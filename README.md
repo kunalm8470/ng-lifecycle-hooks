@@ -1,27 +1,44 @@
-# LifecycleHooks
+# Angular lifecycle hooks
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
+Order of invocation of the Angular lifecycle hooks are -
 
-## Development server
+<ul>
+    <li><code>constructor</code></li>
+    <li><code>ngOnchanges</code></li>
+    <li><code>ngOnInit</code></li>
+    <li><code>ngDoCheck</code></li>
+    <li><code>ngAfterContentInit</code></li>
+    <li><code>ngAfterContentChecked</code></li>
+    <li><code>ngAfterViewInit</code></li>
+    <li><code>ngAfterViewChecked</code></li>
+    <li><code>ngOnDestroy</code></li>
+</ul>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Angular executes hook methods in the following sequence.
 
-## Code scaffolding
+0. `constructor`
+Default method which is called when the class is instantiated.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. `ngOnChanges`
+Fired when Angular sets or resets data-bound input properties or a new component is created.
 
-## Build
+2. `ngOnInit`
+Called once the component/directive is initialized.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+3. `ngDoCheck`
+Fires when change detection runs.
 
-## Running unit tests
+4. `ngAfterContentInit`
+Fired when content(`ng-content`) has been projected into the view.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+5. `ngAfterContentChecked`
+Fired after every projected content has been checked.
 
-## Running end-to-end tests
+6. `ngAfterViewInit`
+Fired after the components view and the child view has been initialized.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+7. `ngAfterViewChecked`
+Fired every time the view and the child view has been checked.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+8. `ngOnDestroy`
+Called once when Angular is about to destroy directive/component. Clean-up logic like detaching from observables and detaching from event handlers are done in here to avoid memory leaks.
